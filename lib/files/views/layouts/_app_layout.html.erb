@@ -1,0 +1,52 @@
+<div class="navbar bg-accent-focus">
+  <div class="flex-1">
+    <%= link_to Rails.configuration.application_name, root_path, class: 'btn btn-ghost text-white normal-case text-xl' %>
+
+    <label for="drawer-navigation" class="btn btn-square bg-transparent border-none drawer-button xl:hidden">
+      <%= heroicon 'bars-3' %>
+    </label>
+  </div>
+  <div class="flex-none gap-2">
+    <div class="dropdown dropdown-end">
+      <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <%= image_tag 'avatar.png' %>
+        </div>
+      </label>
+      <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li class="hidden">
+          <a class="justify-between">
+            Profile
+            <span class="badge">New</span>
+          </a>
+        </li>
+        <li class="hidden"><a>Settings</a></li>
+        <li>
+          <%= link_to 'Wyloguj', destroy_user_session_path, data: { turbo_method: :delete } %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="drawer xl:drawer-open">
+  <input id="drawer-navigation" type="checkbox" class="drawer-toggle"/>
+  <div class="drawer-content flex flex-col items-start justify-start p-6 prose max-w-none">
+    <%= yield %>
+    <!-- Page content here -->
+
+  </div>
+  <div class="drawer-side">
+    <label for="drawer-navigation" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 h-full bg-gray-900 text-white">
+    <label for="drawer-navigation" class="btn btn-square bg-transparent border-none drawer-button xl:hidden ml-auto hover:text-gray-900">
+      <%= heroicon 'x-mark', options: { class: 'text-white h-6 w-6 hover:text-gray-900' } %>
+    </label>
+      <!-- Sidebar content here -->
+      <li class="hover:bg-gray-800 hover:!text-white">
+        <a class="hover:text-gray-300">Sidebar Item 1</a>
+      </li>
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html data-theme="light" class="h-full">
+<head>
+  <title>Templateapp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "turbo", type: "module" %>
+  <%= hotwire_livereload_tags if Rails.env.development? %></head>
+
+<body class="h-full">
+<% if user_signed_in? %>
+  <%= render "layouts/app_layout" do %>
+    <%= yield %>
+  <% end %>
+<% else %>
+  <%= render "layouts/auth_layout" do %>
+    <%= yield %>
+  <% end %>
+<% end %>
+</body>
+</html>

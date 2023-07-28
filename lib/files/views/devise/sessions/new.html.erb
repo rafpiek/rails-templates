@@ -1,0 +1,42 @@
+<%= content_for(:title) { 'Zaloguj się' } %>
+<%= content_for(:subtitle) { 'Zaloguj się na swoje konto i trenuj z nami' } %>
+<%= content_for(:form) do %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'flex flex-col w-full prose' }) do |f| %>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Adres email</span>
+      </label>
+      <%= f.label :email, class: 'input-group input-group-vertical' do %>
+        <span>Email</span>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input input-bordered' %>
+      <% end %>
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Hasło</span>
+      </label>
+      <%= f.label :pasword, class: 'input-group input-group-vertical' do %>
+        <span>Hasło</span>
+        <%= f.password_field :password, autofocus: true, autocomplete: 'current-password', class: 'input input-bordered' %>
+      <% end %>
+    </div>
+
+
+
+    <% if devise_mapping.rememberable? %>
+      <div class="form-control w-1/4 mt-4">
+        <%= f.label :remember_me, class: 'cursor-pointer label' do %>
+          <%= f.check_box :remember_me, class: 'checkbox checkbox-accent' %>
+          <span class="label-text text-l">Remember me</span>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="flex justify-center mt-4 flex-col gap-4 items-center">
+      <%= f.submit "Zaloguj", class: 'btn btn-success btn-wide' %>
+      <%= render "devise/shared/links" %>
+
+    </div>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,16 @@
+<h1>Pages#home</h1>
+<h2>
+  This is the app generated from template
+</h2>
+<p>
+  Template includes daisy ui and Tailwind typography
+</p>
+<h3>
+  Your email is: <span class="font-l font-semibold text-info"><%= current_user.email %></span>
+</h3>
+<p class="text-accent text-xl font-bold">
+  Cheers 🎉
+</p>
+<% if user_signed_in? %>
+  <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline btn-error btn-wide'%>
+<% end %>

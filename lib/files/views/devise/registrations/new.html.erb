@@ -1,0 +1,45 @@
+<%= content_for(:title) { 'Załóż konto' } %>
+<%= content_for(:subtitle) { 'Załóż konto i dołącz do najlepszych szkółek piłkarskich w Polsce' } %>
+<%= content_for(:form) do %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'flex flex-col w-full prose' }) do |f| %>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Adres email</span>
+      </label>
+      <%= f.label :email, class: 'input-group input-group-vertical' do %>
+        <span>Email</span>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input input-bordered' %>
+      <% end %>
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Hasło</span>
+      </label>
+      <% if @minimum_password_length %>
+        <em>Hasło musi mieć minimum(<%= @minimum_password_length %> znaków</em>
+      <% end %>
+      <%= f.label :pasword, class: 'input-group input-group-vertical' do %>
+        <span>Hasło</span>
+        <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'input input-bordered' %>
+      <% end %>
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Potwierdź hasło</span>
+      </label>
+      <%= f.label :password_confirmation, class: 'input-group input-group-vertical' do %>
+        <span>Potwierdź hasło</span>
+        <%= f.password_field :password_confirmation, autofocus: true, autocomplete: 'new-password', class: 'input input-bordered' %>
+      <% end %>
+    </div>
+
+
+
+    <div class="flex justify-center mt-4 flex-col gap-4 items-center">
+      <%= f.submit "Zarejestruj mnie", class: 'btn btn-success btn-wide' %>
+      <%= render "devise/shared/links" %>
+
+    </div>
+  <% end %>
+
+<% end %>
