@@ -64,8 +64,36 @@ end
   RUBY
 end
 
+def api_helpers
+  <<-RUBY
+private
+
+def command_bus
+  Rails.configuration.command_bus
+end
+
+def event_store
+  Rails.configuration.event_store
+end
+
+def cqrs
+  Rails.configuration.cqrs
+end
+
+def uuid!
+  SecureRandom.uuid
+end
+  RUBY
+end
+
 def add_helpers
   insert_into_file 'app/controllers/application_controller.rb', after: 'class ApplicationController < ActionController::Base' do
     "\n#{helpers}\n"
+  end
+end
+
+def add_api_helpers
+  insert_into_file 'app/controllers/application_controller.rb', after: 'class ApplicationController < ActionController::Base' do
+    "\n#{api_helpers}\n"
   end
 end
