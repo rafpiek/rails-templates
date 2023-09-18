@@ -1,0 +1,28 @@
+### LOGIN
+POST {{host}}//sign_in
+Accept: application/json
+Content-Type: application/json
+X-Role: player
+
+{
+  "email": "email@email.com",
+  "password": "passwordpassword"
+}
+
+
+> {%
+  client.global.set("auth_token", response.headers.valuesOf("X-Session-Token")[0]);
+  client.global.set("session_id", response.body["id"]);
+%}
+
+### LOG OUT
+DELETE {{host}}/sign_out
+Accept: application/json
+Content-Type: application/json
+Authorization: Token {{auth_token}}
+
+### CHECK AUTH
+GET {{host}}/auth
+Accept: application/json
+Content-Type: application/json
+Authorization: Token {{auth_token}}

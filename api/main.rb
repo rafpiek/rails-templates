@@ -14,6 +14,7 @@ require_relative '../lib/setup_rubocop'
 require_relative '../lib/setup_generators'
 require_relative '../lib/seed_db'
 require_relative '../lib/copy_views'
+require_relative '../lib/setup_api_authentication'
 
 def source_paths
   [File.expand_path(File.dirname(__FILE__))]
@@ -22,18 +23,23 @@ end
 add_gems(api: true)
 run 'bundle install'
 
+http client setup
+
 after_bundle do
   setup_generators
   add_api_root_path
   config_database
   set_application_name
-  # setup_devise
   add_sidekiq
   setup_testing_tools
   add_api_helpers
 
   rails_command 'db:migrate'
-  seed_db
   setup_rubocop
+
+
+
+  directory '../lib/files/requests', 'requests', force: true
+
   init_git_repo
 end

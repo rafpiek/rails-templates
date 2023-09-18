@@ -11,6 +11,7 @@ def add_gems(api: false)
   gem 'simple_command'
   gem 'whenever', require: false
   gem 'pundit'
+  gem 'authentication-zero'
 
   unless api
     gem 'view_component', require: true
