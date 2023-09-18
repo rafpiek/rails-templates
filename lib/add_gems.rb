@@ -1,11 +1,9 @@
-def add_gems
+def add_gems(api: false)
   gem 'devise'
   gem 'friendly_id'
   gem 'sidekiq'
   gem 'pagy'
-  gem 'heroicon'
   gem 'paper_trail'
-  gem 'view_component', require: true
   gem 'httparty'
   gem 'ransack'
   gem 'paranoia'
@@ -14,13 +12,18 @@ def add_gems
   gem 'whenever', require: false
   gem 'pundit'
 
+  unless api
+    gem 'view_component', require: true
+    gem 'heroicon'
+  end
+
   gem_group :development do
     gem 'annotate'
     gem 'brakeman'
     gem 'bullet'
     gem 'rails_best_practices'
     gem 'reek'
-    gem 'hotwire-livereload'
+    gem 'hotwire-livereload' unless api
   end
 
   gem_group :development, :test do
