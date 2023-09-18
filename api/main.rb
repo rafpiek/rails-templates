@@ -23,8 +23,6 @@ end
 add_gems(api: true)
 run 'bundle install'
 
-http client setup
-
 after_bundle do
   setup_generators
   add_api_root_path
@@ -36,8 +34,7 @@ after_bundle do
 
   rails_command 'db:migrate'
   setup_rubocop
-
-
+  setup_api_authentication
 
   directory '../lib/files/requests', 'requests', force: true
 
